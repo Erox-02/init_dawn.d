@@ -1,0 +1,4 @@
+(fp_lib_table
+	(version 7)
+	(lib (name "init_dawn.d") (type "KiCad") (uri "${KIPRJMOD}/init_dawn.d.pretty") (options "") (descr ""))
+)
