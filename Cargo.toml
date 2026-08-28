@@ -3,5 +3,5 @@ name = imit_dawn.d-Firmware"
 edition = "2021"
 authors = []
 description = "Firmware for init_dawn.d"
-license = "gpl"
+license = "GPL-3.0-or-later"
 repository = 
