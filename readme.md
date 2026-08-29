@@ -1,3 +1,4 @@
+[![Hack Club Stardance](https://img.shields.io/badge/Hack%20Club-Stardance-blueviolet)](https://stardance.hackclub.com/)
 # init_dawn.d
 
 > A custom ESP32-C3 alarm clock, designed from the PCB up.
@@ -32,10 +33,11 @@ Current PCB dimensions:
 ```text
 116 × 84 × 1.6 mm
 ````
+![schematic](assets/schematic.png)
+![pcb](assets/pcb.png)
 
-Designed and routed using KiCad.
-
-KiCad project files:
+designed and routed using KiCad.
+Kicad project files:
 
 ```text
 kicad/
@@ -73,7 +75,7 @@ current modifications include:
 - M3 heat-set insert bosses
 - LCD cutout
 - USB-C access
-- Buzzer clearance / ventilation
+- Buzzer clearance
 - Switch openings
 The PCB is mounted using **M3 × 5 × 4 mm heat-set brass inserts**.
 
@@ -84,37 +86,52 @@ cad/
 ├── Cadsucks.FCStd
 └── Cadsucks.3mf
 ```
-
-`Cadsucks.FCStd` is the editable FreeCAD file.
-
-`Cadsucks.3mf` is the current 3D-printable version.
+![3dmodel](3d_model.png)
+![3dpcb](3d_pcb.png)
+---
+`Cadsucks.FCStd` is the editable freeCAD file.
+`Cadsucks.3mf` is the current 3d printable version.
 
 ## Repository Structure
 
 ```text
-.
-├── cad/
-│   ├── Cadsucks.3mf
-│   └── Cadsucks.FCStd
-│
-├── gerber/
-│   ├── gerber.zip
-│   ├── *.gbr
-│   └── *.gbrjob
-│
-├── init_dawn/
-│   ├── Cargo.toml
-│   └── src/
-│       └── main.rs
-│
-├── kicad/
-│   ├── init_dawn.d.kicad_pcb
-│   ├── init_dawn.d.kicad_prl
-│   ├── init_dawn.d.kicad_pro
-│   └── init_dawn.d.kicad_sch
-│
-└── LICENSE
+init_dawn.d
+├── assets
+│   ├── 3d model.png
+│   ├── 3d_pcb.png
+│   ├── pcb.png
+│   └── schematic.png
+├── cad
+│   ├── Cadsucks.3mf
+│   └── Cadsucks.FCStd
+├── gerber
+│   ├── gerber.zip
+│   ├── init_dawn.d-B_Cu.gbr
+│   ├── init_dawn.d-Edge_Cuts.gbr
+│   ├── init_dawn.d-F_Courtyard.gbr
+│   ├── init_dawn.d-F_Cu.gbr
+│   ├── init_dawn.d-F_Fab.gbr
+│   ├── init_dawn.d-F_Silkscreen.gbr
+│   ├── init_dawn.d-job.gbrjob
+│   ├── init_dawn.d-User_Comments.gbr
+│   └── init_dawn.d-User_Drawings.gbr
+├── init_dawn
+│   ├── Cargo.toml
+│   └── src
+│       └── main.rs
+├── kicad
+│   ├── init_dawn.d.kicad_pcb
+│   ├── init_dawn.d.kicad_prl
+│   ├── init_dawn.d.kicad_pro
+│   └── init_dawn.d.kicad_sch
+├── LICENSE
+└── readme.md
+
+7 directories, 25 files
+
 ```
+
+---
 
 ## Current Status
 
