@@ -3,7 +3,7 @@
 
 use esp_hal::{
     clock::ClockControl,
-    gpio::IO,
+    gpio::{IO, Input, Output, PullDown},
     peripherals::Peripherals,
     prelude::*,
     spi::{master::Spi, SpiMode},
@@ -18,59 +18,59 @@ use embedded_graphics::{
     text::Text,
 };
 
-const CS: u32 = 0;
-const DC: u32 = 7;
-const RST: u32 = 9;
-const SCL: u32 = 10;
-const SDA: u32 = 8;
+const CS: u32 = 20;
+const DC: u32 = 21;
+const RST: u32 = 7;
+const SCL: u32 = 8;
+const SDA: u32 = 10;
 
-const SHIFT: u32 = 1;
-const HOUR: u32 = 2;
-const MINUTE: u32 = 3;
-const TONE: u32 = 4;
-const MULT: u32 = 5;
-const BUZZ: u32 = 6;
+const shft: u32 = 2;
+const hr: u32 = 3;
+const min: u32 = 4;
+const tone: u32 = 5;
+const mult: u32 = 6;
+const buz: u32 = 9;
 
 #[derive(PartialEq, Clone, Copy)]
 enum Mode {
     Off,
-    Armed,
-    Ringing,
-    Snooze,
+    armed,
+    ringing,
+    snooze,
 }
 
 #[derive(PartialEq, Clone, Copy)]
 enum Dir {
-    Up,
-    Down,
+    up,
+    down,
 }
 
 #[derive(PartialEq, Clone, Copy)]
 enum Tone {
-    Continuous,
-    Beep,
-    Fast,
-    Siren,
-    Melody,
+    cont,
+    beep,
+    fast,
+    siren,
+    melody,
 }
 
 #[derive(PartialEq, Clone, Copy)]
 enum Step {
-    One = 1,
-    Two = 2,
-    Five = 5,
-    Ten = 10,
-    Twelve = 12,
+    _1x = 1,
+    _2x = 2,
+    _5x = 5,
+    _10x = 10,
+    _12x = 12,
 }
 
 impl Step {
     fn next(&self) -> Self {
         match self {
-            Step::One => Step::Two,
-            Step::Two => Step::Five,
-            Step::Five => Step::Ten,
-            Step::Ten => Step::Twelve,
-            Step::Twelve => Step::One,
+            Step::_1x => Step::_2x,
+            Step::_2x => Step::_5x,
+            Step::_5x => Step::_10x,
+            Step::_10x => Step::_12x,
+            Step::_12x => Step::_1x,
         }
     }
 }
@@ -78,11 +78,11 @@ impl Step {
 impl Tone {
     fn next(&self) -> Self {
         match self {
-            Tone::Continuous => Tone::Beep,
-            Tone::Beep => Tone::Fast,
-            Tone::Fast => Tone::Siren,
-            Tone::Siren => Tone::Melody,
-            Tone::Melody => Tone::Continuous,
+            Tone::cont => Tone::beep,
+            Tone::beep => Tone::fast,
+            Tone::fast => Tone::siren,
+            Tone::siren => Tone::melody,
+            Tone::melody => Tone::cont,
         }
     }
 }
@@ -106,14 +106,14 @@ impl State {
     fn new() -> Self {
         Self {
             mode: Mode::Off,
-            dir: Dir::Up,
+            dir: Dir::up,
             alarm_h: 7,
             alarm_m: 0,
             now_h: 12,
             now_m: 0,
             now_s: 0,
-            tone: Tone::Beep,
-            step: Step::One,
+            tone: Tone::beep,
+            step: Step::_1x,
             snooze_m: 5,
             snooze_s: 0,
             phase: 0,
@@ -122,19 +122,19 @@ impl State {
 }
 
 struct Buttons {
-    shift: Input,
-    hour: Input,
-    minute: Input,
-    tone: Input,
-    mult: Input,
+    shft: Input<PullDown>,
+    hr: Input<PullDown>,
+    min: Input<PullDown>,
+    tone: Input<PullDown>,
+    mult: Input<PullDown>,
 }
 
 impl Buttons {
-    fn read(&mut self) -> ButtonState {
+    fn read(&self) -> ButtonState {
         ButtonState {
-            shift: self.shift.is_high(),
-            hour: self.hour.is_high(),
-            minute: self.minute.is_high(),
+            shft: self.shft.is_high(),
+            hr: self.hr.is_high(),
+            min: self.min.is_high(),
             tone: self.tone.is_high(),
             mult: self.mult.is_high(),
         }
@@ -142,33 +142,33 @@ impl Buttons {
 }
 
 struct ButtonState {
-    shift: bool,
-    hour: bool,
-    minute: bool,
+    shft: bool,
+    hr: bool,
+    min: bool,
     tone: bool,
     mult: bool,
 }
 
 struct Debounce {
-    shift: u8,
-    hour: u8,
-    minute: u8,
+    shft: u8,
+    hr: u8,
+    min: u8,
     tone: u8,
     mult: u8,
 }
 
 impl Debounce {
     fn new() -> Self {
-        Self { shift: 0, hour: 0, minute: 0, tone: 0, mult: 0 }
+        Self { shft: 0, hr: 0, min: 0, tone: 0, mult: 0 }
     }
 
     fn update(&mut self, state: &ButtonState) -> ProcessedButtons {
-        let shift = self.process(&mut self.shift, state.shift);
-        let hour = self.process(&mut self.hour, state.hour);
-        let minute = self.process(&mut self.minute, state.minute);
+        let shft = self.process(&mut self.shft, state.shft);
+        let hr = self.process(&mut self.hr, state.hr);
+        let min = self.process(&mut self.min, state.min);
         let tone = self.process(&mut self.tone, state.tone);
         let mult = self.process(&mut self.mult, state.mult);
-        ProcessedButtons { shift, hour, minute, tone, mult }
+        ProcessedButtons { shft, hr, min, tone, mult }
     }
 
     fn process(&mut self, counter: &mut u8, pressed: bool) -> bool {
@@ -187,9 +187,9 @@ impl Debounce {
 }
 
 struct ProcessedButtons {
-    shift: bool,
-    hour: bool,
-    minute: bool,
+    shft: bool,
+    hr: bool,
+    min: bool,
     tone: bool,
     mult: bool,
 }
@@ -202,28 +202,27 @@ fn main() -> ! {
     let mut delay = Delay::new(&clk);
     let io = IO::new(p.GPIO, p.IO_MUX);
 
-    let sclk = io.pins.gpio10.into_push_pull_output();
-    let mosi = io.pins.gpio8.into_push_pull_output();
-    let miso = io.pins.gpio9.into_push_pull_output();
+    let sclk = io.pins.gpio8.into_push_pull_output();
+    let mosi = io.pins.gpio10.into_push_pull_output();
 
     let spi = Spi::new(p.SPI2, 40u32.MHz(), SpiMode::Mode0, &clk)
-        .with_pins(Some(sclk), Some(mosi), Some(miso), None);
+        .with_pins(Some(sclk), Some(mosi), None, None);
 
-    let cs = io.pins.gpio0.into_push_pull_output();
-    let dc = io.pins.gpio7.into_push_pull_output();
-    let rst = io.pins.gpio9.into_push_pull_output();
+    let cs = io.pins.gpio20.into_push_pull_output();
+    let dc = io.pins.gpio21.into_push_pull_output();
+    let rst = io.pins.gpio7.into_push_pull_output();
     let iface = SPIInterface::new(spi, dc, cs);
     let mut disp = ST7789::new(iface, rst, 76, 284);
     disp.init(&mut delay).unwrap();
 
     let mut buttons = Buttons {
-        shift: io.pins.gpio1.into_pull_down_input(),
-        hour: io.pins.gpio2.into_pull_down_input(),
-        minute: io.pins.gpio3.into_pull_down_input(),
-        tone: io.pins.gpio4.into_pull_down_input(),
-        mult: io.pins.gpio5.into_pull_down_input(),
+        shft: io.pins.gpio2.into_pull_down_input(),
+        hr: io.pins.gpio3.into_pull_down_input(),
+        min: io.pins.gpio4.into_pull_down_input(),
+        tone: io.pins.gpio5.into_pull_down_input(),
+        mult: io.pins.gpio6.into_pull_down_input(),
     };
-    let mut buz = io.pins.gpio6.into_push_pull_output();
+    let mut buz = io.pins.gpio9.into_push_pull_output();
 
     let mut st = State::new();
     let mut debounce = Debounce::new();
@@ -243,10 +242,10 @@ fn main() -> ! {
             draw(&mut disp, &st);
         }
 
-        if st.mode == Mode::Snooze && second_tick {
+        if st.mode == Mode::snooze && second_tick {
             st.snooze_s += 1;
             if st.snooze_s >= (st.snooze_m as u32 * 60) {
-                st.mode = Mode::Ringing;
+                st.mode = Mode::ringing;
                 st.snooze_s = 0;
                 st.phase = 0;
                 draw(&mut disp, &st);
@@ -255,50 +254,50 @@ fn main() -> ! {
 
         let pressed = debounce.update(&buttons.read());
 
-        if pressed.shift {
+        if pressed.shft {
             handle_shift(&mut st);
-            buz.set_high();
+            buz.set_1();
             delay.delay_ms(50u32);
-            buz.set_low();
+            buz.set_0();
             draw(&mut disp, &st);
         }
 
-        if pressed.hour {
+        if pressed.hr {
             handle_hour(&mut st);
-            buz.set_h            handle_minute(&mut st);
-igh();
+            buz.set_1();
             delay.delay_ms(50u32);
-            buz.set_low();
+            buz.set_0();
             draw(&mut disp, &st);
         }
 
-        if pressed.minute {
-            buz.set_high();
+        if pressed.min {
+            handle_minute(&mut st);
+            buz.set_1();
             delay.delay_ms(50u32);
-            buz.set_low();
+            buz.set_0();
             draw(&mut disp, &st);
         }
 
         if pressed.tone {
             handle_tone(&mut st);
-            buz.set_high();
+            buz.set_1();
             delay.delay_ms(50u32);
-            buz.set_low();
+            buz.set_0();
             draw(&mut disp, &st);
         }
 
         if pressed.mult {
             handle_mult(&mut st);
-            buz.set_high();
+            buz.set_1();
             delay.delay_ms(50u32);
-            buz.set_low();
+            buz.set_0();
             draw(&mut disp, &st);
         }
 
-        if st.mode == Mode::Ringing {
+        if st.mode == Mode::ringing {
             play_tone(&mut buz, &mut st);
         } else {
-            buz.set_low();
+            buz.set_0();
         }
     }
 }
@@ -316,49 +315,49 @@ fn update_clock(st: &mut State) {
 }
 
 fn check_alarm(st: &mut State) {
-    if st.mode == Mode::Armed && st.now_h == st.alarm_h && st.now_m == st.alarm_m && st.now_s == 0 {
-        st.mode = Mode::Ringing;
+    if st.mode == Mode::armed && st.now_h == st.alarm_h && st.now_m == st.alarm_m && st.now_s == 0 {
+        st.mode = Mode::ringing;
         st.phase = 0;
     }
 }
 
 fn handle_shift(st: &mut State) {
-    if st.mode != Mode::Ringing {
+    if st.mode != Mode::ringing {
         st.dir = match st.dir {
-            Dir::Up => Dir::Down,
-            Dir::Down => Dir::Up,
+            Dir::up => Dir::down,
+            Dir::down => Dir::up,
         };
     }
 }
 
 fn handle_hour(st: &mut State) {
-    if st.mode == Mode::Ringing {
+    if st.mode == Mode::ringing {
         start_snooze(st);
-    } else if st.mode == Mode::Off || st.mode == Mode::Armed {
+    } else if st.mode == Mode::Off || st.mode == Mode::armed {
         let delta = st.step as u8;
         match st.dir {
-            Dir::Up => st.alarm_h = (st.alarm_h + delta) % 24,
-            Dir::Down => st.alarm_h = (st.alarm_h + 24 - delta) % 24,
+            Dir::up => st.alarm_h = (st.alarm_h + delta) % 24,
+            Dir::down => st.alarm_h = (st.alarm_h + 24 - delta) % 24,
         }
-        st.mode = Mode::Armed;
+        st.mode = Mode::armed;
     }
 }
 
 fn handle_minute(st: &mut State) {
-    if st.mode == Mode::Ringing {
+    if st.mode == Mode::ringing {
         start_snooze(st);
-    } else if st.mode == Mode::Off || st.mode == Mode::Armed {
+    } else if st.mode == Mode::Off || st.mode == Mode::armed {
         let delta = st.step as u8;
         match st.dir {
-            Dir::Up => st.alarm_m = (st.alarm_m + delta) % 60,
-            Dir::Down => st.alarm_m = (st.alarm_m + 60 - delta) % 60,
+            Dir::up => st.alarm_m = (st.alarm_m + delta) % 60,
+            Dir::down => st.alarm_m = (st.alarm_m + 60 - delta) % 60,
         }
-        st.mode = Mode::Armed;
+        st.mode = Mode::armed;
     }
 }
 
 fn handle_tone(st: &mut State) {
-    if st.mode == Mode::Ringing {
+    if st.mode == Mode::ringing {
         start_snooze(st);
     } else {
         st.tone = st.tone.next();
@@ -366,7 +365,7 @@ fn handle_tone(st: &mut State) {
 }
 
 fn handle_mult(st: &mut State) {
-    if st.mode == Mode::Ringing {
+    if st.mode == Mode::ringing {
         st.mode = Mode::Off;
         st.snooze_s = 0;
         st.phase = 0;
@@ -376,7 +375,7 @@ fn handle_mult(st: &mut State) {
 }
 
 fn start_snooze(st: &mut State) {
-    st.mode = Mode::Snooze;
+    st.mode = Mode::snooze;
     st.snooze_m = st.step as u8;
     st.snooze_s = 0;
     st.phase = 0;
@@ -385,21 +384,21 @@ fn start_snooze(st: &mut State) {
 fn play_tone(buz: &mut Output, st: &mut State) {
     st.phase += 1;
     match st.tone {
-        Tone::Continuous => buz.set_high(),
-        Tone::Beep => {
-            if (st.phase / 50) % 2 == 0 { buz.set_high() } else { buz.set_low() }
+        Tone::cont => buz.set_1(),
+        Tone::beep => {
+            if (st.phase / 50) % 2 == 0 { buz.set_1() } else { buz.set_0() }
         }
-        Tone::Fast => {
-            if (st.phase / 20) % 2 == 0 { buz.set_high() } else { buz.set_low() }
+        Tone::fast => {
+            if (st.phase / 20) % 2 == 0 { buz.set_1() } else { buz.set_0() }
         }
-        Tone::Siren => {
+        Tone::siren => {
             let period = 40 + (st.phase / 100) % 40;
-            if (st.phase / period) % 2 == 0 { buz.set_high() } else { buz.set_low() }
+            if (st.phase / period) % 2 == 0 { buz.set_1() } else { buz.set_0() }
         }
-        Tone::Melody => {
+        Tone::melody => {
             let pattern = [200, 150, 250, 150, 200, 150, 250, 150];
             let idx = (st.phase / 25) % 8;
-            if st.phase % 25 < pattern[idx] / 10 { buz.set_high() } else { buz.set_low() }
+            if st.phase % 25 < pattern[idx] / 10 { buz.set_1() } else { buz.set_0() }
         }
     }
 }
@@ -421,32 +420,32 @@ fn draw(disp: &mut ST7789<SPIInterface<impl SpiDevice>>, st: &State) {
     buf.clear();
     let status = match st.mode {
         Mode::Off => "OFF",
-        Mode::Armed => "ARM",
-        Mode::Ringing => "RING",
-        Mode::Snooze => "SNZ",
+        Mode::armed => "ARM",
+        Mode::ringing => "RING",
+        Mode::snooze => "SNZ",
     };
     let dir = match st.dir {
-        Dir::Up => "+",
-        Dir::Down => "-",
+        Dir::up => "+",
+        Dir::down => "-",
     };
     let step = match st.step {
-        Step::One => "1x",
-        Step::Two => "2x",
-        Step::Five => "5x",
-        Step::Ten => "10x",
-        Step::Twelve => "12x",
+        Step::_1x => "1x",
+        Step::_2x => "2x",
+        Step::_5x => "5x",
+        Step::_10x => "10x",
+        Step::_12x => "12x",
     };
     let tone = match st.tone {
-        Tone::Continuous => "CONT",
-        Tone::Beep => "BEEP",
-        Tone::Fast => "FAST",
-        Tone::Siren => "SIRN",
-        Tone::Melody => "MELD",
+        Tone::cont => "CONT",
+        Tone::beep => "BEEP",
+        Tone::fast => "FAST",
+        Tone::siren => "SIRN",
+        Tone::melody => "MELD",
     };
     let _ = write!(&mut buf, "{} {} {} {}", status, dir, step, tone);
     let _ = Text::new(&buf, embedded_graphics::geometry::Point::new(10, 60), style).draw(disp);
 
-    if st.mode == Mode::Snooze {
+    if st.mode == Mode::snooze {
         buf.clear();
         let remain = (st.snooze_m as u32 * 60 - st.snooze_s) / 60;
         let _ = write!(&mut buf, "SNZ {}m", remain);
