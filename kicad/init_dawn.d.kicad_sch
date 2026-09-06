@@ -1260,34 +1260,16 @@
 		(uuid "35a6058f-962b-41dc-bfdc-4ae16dd2fdc1")
 	)
 	(junction
-		(at 147.32 66.04)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "4799dd9b-184b-4613-bfb3-ba1fbac1baae")
-	)
-	(junction
 		(at 114.3 55.88)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "493404e9-b72f-4726-9d37-32e93abace62")
 	)
 	(junction
-		(at 143.51 40.64)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "6bf772a6-b76b-4fa1-9d48-cd3cae58abc7")
-	)
-	(junction
 		(at 127 25.4)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "6f6a50a6-f4a4-4841-90e9-29a5046e4a8d")
-	)
-	(junction
-		(at 151.13 49.53)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "8e89fa72-3916-4b02-9fd0-1c8d1cd39180")
 	)
 	(junction
 		(at 134.62 25.4)
@@ -1302,18 +1284,6 @@
 		(uuid "acddcf85-a006-4e66-bbec-3801929598f7")
 	)
 	(junction
-		(at 147.32 45.72)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "c3385c1f-5c1f-4396-aa70-0e6701df3c22")
-	)
-	(junction
-		(at 173.99 54.61)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "c64a83e5-7456-40ca-9ee2-61963bc8c378")
-	)
-	(junction
 		(at 123.19 29.21)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1326,12 +1296,6 @@
 		(uuid "e50721e0-1d7a-4cbb-b06a-1dc8ead1b1e8")
 	)
 	(junction
-		(at 139.7 52.07)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "e78f2368-f6e0-4626-82ce-7556ec936e73")
-	)
-	(junction
 		(at 142.24 21.59)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1340,10 +1304,6 @@
 	(no_connect
 		(at 167.64 109.22)
 		(uuid "18840920-3716-449d-8ae9-0f4fff87ea5c")
-	)
-	(no_connect
-		(at 151.13 120.65)
-		(uuid "3b3a0752-8bc2-4b77-90a7-47d47617a7c4")
 	)
 	(no_connect
 		(at 123.19 101.6)
@@ -1356,6 +1316,10 @@
 	(no_connect
 		(at 167.64 90.17)
 		(uuid "4ebc1d5d-7dc3-45d1-a87f-8b78cfc138d3")
+	)
+	(no_connect
+		(at 167.64 101.6)
+		(uuid "5c56ef16-fe8e-42da-8ae9-5fd175d4adf3")
 	)
 	(no_connect
 		(at 167.64 93.98)
@@ -1375,16 +1339,6 @@
 	)
 	(wire
 		(pts
-			(xy 171.45 76.2) (xy 171.45 101.6)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0af84dce-069d-4d32-9bea-9b3c5ce525af")
-	)
-	(wire
-		(pts
 			(xy 114.3 58.42) (xy 114.3 55.88)
 		)
 		(stroke
@@ -1392,16 +1346,6 @@
 			(type default)
 		)
 		(uuid "14f22874-3473-464e-b098-61ec78f7d758")
-	)
-	(wire
-		(pts
-			(xy 151.13 49.53) (xy 151.13 78.74)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1c1578d6-37cd-4d68-96b6-6f76832277c1")
 	)
 	(wire
 		(pts
@@ -1425,13 +1369,13 @@
 	)
 	(wire
 		(pts
-			(xy 158.75 66.04) (xy 158.75 76.2)
+			(xy 173.99 52.07) (xy 132.08 52.07)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "21000b72-bd84-4c41-bd59-eb736025b6bf")
+		(uuid "21fa63c5-e347-4c21-9d6d-291700474769")
 	)
 	(wire
 		(pts
@@ -1475,26 +1419,6 @@
 	)
 	(wire
 		(pts
-			(xy 143.51 40.64) (xy 186.69 40.64)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2c039950-7018-49d0-807f-9543c30a783d")
-	)
-	(wire
-		(pts
-			(xy 158.75 76.2) (xy 171.45 76.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2c547711-8f92-4e51-bb13-169721d39bc6")
-	)
-	(wire
-		(pts
 			(xy 74.93 33.02) (xy 74.93 35.56)
 		)
 		(stroke
@@ -1515,23 +1439,13 @@
 	)
 	(wire
 		(pts
-			(xy 151.13 21.59) (xy 151.13 49.53)
+			(xy 151.13 21.59) (xy 151.13 78.74)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "34f67019-4580-4f37-8681-47810fcc1e26")
-	)
-	(wire
-		(pts
-			(xy 173.99 49.53) (xy 173.99 54.61)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "37c2979f-7a63-49e5-bb35-618eb5f3a762")
 	)
 	(wire
 		(pts
@@ -1555,16 +1469,6 @@
 	)
 	(wire
 		(pts
-			(xy 173.99 54.61) (xy 173.99 62.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3f9eb397-6057-458d-b895-01f5b5ee9270")
-	)
-	(wire
-		(pts
 			(xy 139.7 132.08) (xy 139.7 120.65)
 		)
 		(stroke
@@ -1572,6 +1476,16 @@
 			(type default)
 		)
 		(uuid "45309cdd-7af6-438f-94df-76193860f740")
+	)
+	(wire
+		(pts
+			(xy 151.13 120.65) (xy 151.13 130.81)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "462da41b-acb0-4ee1-a5ac-a05dc2f17be1")
 	)
 	(wire
 		(pts
@@ -1615,6 +1529,16 @@
 	)
 	(wire
 		(pts
+			(xy 173.99 130.81) (xy 173.99 52.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5110dd97-5860-48ed-8ab9-b10ab0e5fa58")
+	)
+	(wire
+		(pts
 			(xy 74.93 43.18) (xy 66.04 43.18)
 		)
 		(stroke
@@ -1622,26 +1546,6 @@
 			(type default)
 		)
 		(uuid "5128fec2-2b2e-48bb-bd3c-976a6a50648f")
-	)
-	(wire
-		(pts
-			(xy 147.32 45.72) (xy 147.32 66.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5307460d-11c8-4675-bbd0-f2d7521d8598")
-	)
-	(wire
-		(pts
-			(xy 184.15 45.72) (xy 184.15 54.61)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "530be1ec-33ea-45e0-aa6b-165267c6946c")
 	)
 	(wire
 		(pts
@@ -1665,16 +1569,6 @@
 	)
 	(wire
 		(pts
-			(xy 147.32 25.4) (xy 147.32 45.72)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5af2b9db-39e0-4b09-8d88-9c640e25c172")
-	)
-	(wire
-		(pts
 			(xy 132.08 52.07) (xy 132.08 55.88)
 		)
 		(stroke
@@ -1682,16 +1576,6 @@
 			(type default)
 		)
 		(uuid "64c596ee-672a-4263-bde2-0a6b95c6e327")
-	)
-	(wire
-		(pts
-			(xy 147.32 66.04) (xy 158.75 66.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6596b27a-36f6-4798-982d-b408595a5c91")
 	)
 	(wire
 		(pts
@@ -1705,16 +1589,6 @@
 	)
 	(wire
 		(pts
-			(xy 171.45 101.6) (xy 167.64 101.6)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "706d67cf-235c-44ce-afa0-735f0180dfa2")
-	)
-	(wire
-		(pts
 			(xy 134.62 25.4) (xy 127 25.4)
 		)
 		(stroke
@@ -1722,16 +1596,6 @@
 			(type default)
 		)
 		(uuid "7257c8ec-c2cb-4029-93e1-65f861fe438d")
-	)
-	(wire
-		(pts
-			(xy 151.13 49.53) (xy 173.99 49.53)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7280bdc0-ee74-4440-8bde-2342cae815d4")
 	)
 	(wire
 		(pts
@@ -1745,23 +1609,13 @@
 	)
 	(wire
 		(pts
-			(xy 147.32 45.72) (xy 184.15 45.72)
+			(xy 151.13 130.81) (xy 173.99 130.81)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "73e6fa62-c2d7-4972-9ba3-3dcd8649ea08")
-	)
-	(wire
-		(pts
-			(xy 132.08 52.07) (xy 139.7 52.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7648c56c-6d55-4d8b-8a43-fd070e865817")
+		(uuid "7977160a-1ea0-4d8c-bd0b-7e40952a7173")
 	)
 	(wire
 		(pts
@@ -1792,16 +1646,6 @@
 			(type default)
 		)
 		(uuid "88a2594b-4fba-45f4-a9b9-ab1b86b9fa09")
-	)
-	(wire
-		(pts
-			(xy 139.7 52.07) (xy 139.7 78.74)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8a1f76ac-c420-495e-bb56-6967b1b0f476")
 	)
 	(wire
 		(pts
@@ -1865,23 +1709,13 @@
 	)
 	(wire
 		(pts
-			(xy 143.51 29.21) (xy 143.51 40.64)
+			(xy 143.51 29.21) (xy 143.51 78.74)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "b62cf3da-4163-4024-b30f-a94413e42834")
-	)
-	(wire
-		(pts
-			(xy 146.05 66.04) (xy 147.32 66.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b63bed6d-d1ab-4429-b180-340e996d7b45")
 	)
 	(wire
 		(pts
@@ -1945,23 +1779,13 @@
 	)
 	(wire
 		(pts
-			(xy 139.7 34.29) (xy 139.7 52.07)
+			(xy 139.7 34.29) (xy 139.7 78.74)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "c0ab2dba-3745-4bcd-a93c-1976bab719bc")
-	)
-	(wire
-		(pts
-			(xy 186.69 40.64) (xy 186.69 62.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c0f0cfc6-3382-4cf6-9dab-e1acaf419864")
 	)
 	(wire
 		(pts
@@ -1975,23 +1799,13 @@
 	)
 	(wire
 		(pts
-			(xy 147.32 66.04) (xy 147.32 78.74)
+			(xy 147.32 25.4) (xy 147.32 78.74)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "c3561780-c373-4e82-a79c-83cd3e4dbb01")
-	)
-	(wire
-		(pts
-			(xy 143.51 40.64) (xy 143.51 78.74)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c51d59e1-067f-4dd8-ae98-89db39536120")
 	)
 	(wire
 		(pts
@@ -2082,16 +1896,6 @@
 			(type default)
 		)
 		(uuid "e201d1de-48f7-4552-afd6-1dc411a391c8")
-	)
-	(wire
-		(pts
-			(xy 186.69 62.23) (xy 184.15 62.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e51feac3-b25d-4799-8224-38e6412b3594")
 	)
 	(wire
 		(pts
@@ -2356,82 +2160,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Mechanical:MountingHole")
-		(at 50.8 87.63 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "20b8168f-60a2-4051-be0a-d1ffb1b184d4")
-		(property "Reference" "H3"
-			(at 53.34 86.3599 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MountingHole"
-			(at 53.34 88.8999 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3"
-			(at 50.8 87.63 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 50.8 87.63 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Mounting Hole without connection"
-			(at 50.8 87.63 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(instances
-			(project "init_dawn.d"
-				(path "/2965f4d6-3ac6-475c-b44a-9477088bbb8f"
-					(reference "H3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Switch:SW_Push")
 		(at 147.32 21.59 0)
 		(unit 1)
@@ -2651,86 +2379,6 @@
 			(project "init_dawn.d"
 				(path "/2965f4d6-3ac6-475c-b44a-9477088bbb8f"
 					(reference "U2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Switch:SW_Push")
-		(at 179.07 54.61 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "401d84f6-9abe-4b0d-ba13-cd6fc7dc9f86")
-		(property "Reference" "SW1"
-			(at 179.07 49.53 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" ""
-			(at 179.07 49.53 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
-			(at 179.07 49.53 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 179.07 49.53 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Push button switch, generic, two pins"
-			(at 179.07 54.61 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "08136a95-6648-46eb-8e9f-6906525de436")
-		)
-		(pin "1"
-			(uuid "86e28c50-a0fc-463a-a532-01df43a23b5a")
-		)
-		(instances
-			(project "init_dawn.d"
-				(path "/2965f4d6-3ac6-475c-b44a-9477088bbb8f"
-					(reference "SW1")
 					(unit 1)
 				)
 			)
@@ -2975,87 +2623,6 @@
 			(project "init_dawn.d"
 				(path "/2965f4d6-3ac6-475c-b44a-9477088bbb8f"
 					(reference "BZ1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Switch:SW_Push")
-		(at 179.07 62.23 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "a707f59d-bb14-40f9-8b4e-9bf7f610222d")
-		(property "Reference" "SW2"
-			(at 179.07 54.61 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" ""
-			(at 179.07 57.15 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Button_Switch_Keyboard:SW_Cherry_MX_1.00u_PCB"
-			(at 179.07 57.15 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 179.07 57.15 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Push button switch, generic, two pins"
-			(at 179.07 62.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "2bab255b-ee14-4d70-8281-66182f54ade0")
-		)
-		(pin "1"
-			(uuid "b29b75a3-bbf0-4252-8759-1a57e8182afe")
-		)
-		(instances
-			(project "init_dawn.d"
-				(path "/2965f4d6-3ac6-475c-b44a-9477088bbb8f"
-					(reference "SW2")
 					(unit 1)
 				)
 			)
@@ -3329,82 +2896,6 @@
 			(project "init_dawn.d"
 				(path "/2965f4d6-3ac6-475c-b44a-9477088bbb8f"
 					(reference "SW4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Mechanical:MountingHole")
-		(at 50.8 96.52 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "fe9e6f1c-ec57-46ca-8330-5d2d4610362c")
-		(property "Reference" "H4"
-			(at 53.34 95.2499 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MountingHole"
-			(at 53.34 97.7899 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3"
-			(at 50.8 96.52 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 50.8 96.52 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Mounting Hole without connection"
-			(at 50.8 96.52 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(instances
-			(project "init_dawn.d"
-				(path "/2965f4d6-3ac6-475c-b44a-9477088bbb8f"
-					(reference "H4")
 					(unit 1)
 				)
 			)

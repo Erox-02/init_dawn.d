@@ -524,9 +524,9 @@
     "last_paths": {
       "idf": "",
       "netlist": "",
-      "plot": "~/gerber",
+      "plot": "/home/erox/init_dawn.d/gerber/",
       "specctra_dsn": "",
-      "step": "",
+      "step": "../../3d/init_dawn.d.step",
       "vrml": ""
     },
     "page_layout_descr_file": ""
