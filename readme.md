@@ -11,17 +11,26 @@
 
 ## wiring
 
-gnd(pin 1) - gnd
-vcc(pin 2) - 3.3v out
-scl(pin 3) - D10
-sda(pin 4) - D8
-rst(pin 5) -D9
-dc(pin 6) - D7
-cs(pin 7) - D0
-bl (pin 8) - 3.3v out
-
+gnd(pin 1) -> gnd
+---
+vcc(pin 2) -> 3.3v out
+---
+scl(pin 3) -> D10
+---
+sda(pin 4) -> D8
+---
+rst(pin 5) -> D9
+---
+dc(pin 6) -> D7
+---
+cs(pin 7) -> D0
+---
+bl (pin 8) -> 3.3v out
+---
 SW1-sw5 1 pin on 3.3v and other pin on D1-D5 
+---
 Buzzer on D6 and gnd 
+---
 
 ## feature
 
@@ -31,14 +40,39 @@ Buzzer on D6 and gnd
 - Snooze function
 - Direction switching (up/down)
 
-## Controls
+## controls
 
 
 shift ->  change ladout (up/down)
+---
 hour  ->  adjust hours / snooze 
+---
 minute -> adjust minutes / snooze 
+---
 tone   -> change alarm tone / snooze 
+---
 multiplier -> change multipler / stop alarm 
+---
+
+## pcb
+
+---
+![schematic](assets/schematic.png)
+---
+![pcb](assets/pcb.png)
+---
+
+## cad
+
+---
+![display_portion](assets/display.png)
+---
+![display_hollow](assets/display_h.png)
+---
+![top_view](assets/top.png)
+---
+![no_top_view](assets/no_top.png)
+---
 
 ## License
 
